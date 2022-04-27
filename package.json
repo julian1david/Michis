@@ -1,0 +1,22 @@
+{
+  "name": "platzi-movies",
+  "version": "1.0.0",
+  "description": "A consume API of movies",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/julian1david/platzi-movies.git"
+  },
+  "keywords": [
+    "JavaScript"
+  ],
+  "author": "@julian1f",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/julian1david/platzi-movies/issues"
+  },
+  "homepage": "https://github.com/julian1david/platzi-movies#readme"
+}
