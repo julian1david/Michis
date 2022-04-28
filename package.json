@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/julian1david/platzi-movies/issues"
   },
-  "homepage": "https://github.com/julian1david/platzi-movies#readme"
+  "homepage": "https://github.com/julian1david/platzi-movies#readme",
+  "dependencies": {
+    "axios": "^0.27.2"
+  }
 }
