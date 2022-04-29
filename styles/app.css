@@ -196,6 +196,16 @@ button {
   padding-bottom: 16px;
 }
 
+/*Decorar los scroll averiguar que funciona el webkit*/
+.trendingPreview-movieList::-webkit-scrollbar {
+  background-color: var(--darkBlue);
+  height: 4px;
+}
+.trendingPreview-movieList::-webkit-scrollbar-thumb {
+  cursor: pointer;
+  background-color: var(--purple-dark-1);
+}
+
 .trendingPreview-movieList .movie-container {
   display: inline-block;
   margin-right: 8px;
