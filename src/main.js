@@ -11,7 +11,7 @@ const api = axios.create({
 
 // Utils
 
-function createMovie( movies, container) {
+function createMovie(movies, container) {
     container.innerHTML = "";
 
     movies.map(movie => {
@@ -26,15 +26,15 @@ function createMovie( movies, container) {
         const movieImg = document.createElement('img');
         movieImg.classList.add('movie-img');
         movieImg.setAttribute('alt', movie.title);
-        movieImg.setAttribute('src', 
-        `https://image.tmdb.org/t/p/w300/${movie.poster_path}`);
+        movieImg.setAttribute('src',
+            `https://image.tmdb.org/t/p/w300/${movie.poster_path}`);
 
         movieContainer.appendChild(movieImg);
         container.appendChild(movieContainer);
     });
 }
 
-function createCategories(categories, container){   
+function createCategories(categories, container) {
     container.innerHTML = "";
 
     categories.map(category => {
@@ -60,34 +60,34 @@ function createCategories(categories, container){
 async function getTrendingPreview() {
     const { data } = await api.get('/trending/movie/day');
     const movies = data.results;
-    createMovie(movies,trendinMoviesPreviewList );
+    createMovie(movies, trendinMoviesPreviewList);
 }
 
 async function getTrending() {
     const { data } = await api.get('/trending/movie/day');
     const movies = data.results;
-    createMovie(movies,genericSection );
+    createMovie(movies, genericSection);
 }
 
-async function getCategoriesPreview(){
+async function getCategoriesPreview() {
     const res = await fetch('https://api.themoviedb.org/3/genre/movie/list?api_key=' + API_KEY)
     const data = await res.json()
     const categories = data.genres;
     createCategories(categories, categoriesPreviewList)
-    
+
 }
 
-async function  getMoviesByCategory(id) {
+async function getMoviesByCategory(id) {
     const { data } = await api.get('discover/movie', {
         params: {
             with_genres: id,
         }
     });
     const movies = data.results;
-    createMovie(movies,genericSection );
+    createMovie(movies, genericSection);
 }
 
-async function  getMoviesBySearch(query) {
+async function getMoviesBySearch(query) {
     const { data } = await api.get('search/movie', {
         params: {
             //como se llama igual no hay necesidad de de poner más parametros
@@ -95,47 +95,33 @@ async function  getMoviesBySearch(query) {
         }
     });
     const movies = data.results;
-    createMovie(movies,genericSection );
+    createMovie(movies, genericSection);
 }
 
 async function getMovieById(id) {
     //data lo trae de la consulta a la API y se renombre  asi a movie
     const { data: movie } = await api('movie/' + id);
 
-    const movieImgURl =  `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
-    headerSection.style.background =`
+    const movieImgURl = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
+    headerSection.style.background = `
         linear-gradient(
             180deg,
             rgba(0, 0, 0, 0.35) 19.27%,
             rgba(0, 0, 0, 0) 29.17%),
             url(${movieImgURl})
     `
-    console.log(headerSection.style.background);
 
-    movieDetailTitle.textContent = movie.title;
-    movieDetailDescription.textContent =  movie.overview;
-    movieDetailScore.textContent =  movie.vote_average;
-
-    createCategories(movie.genres, movieDetailcategoriesList)
-}
-
-/* async function getMovieById(id) {
-    const { data: movie } = await api('movie/' + id);
-  
-    const movieImgUrl = 'https://image.tmdb.org/t/p/w500' + movie.poster_path;
-    console.log(movieImgUrl)
-    headerSection.style.background = `
-      linear-gradient(
-        180deg,
-        rgba(0, 0, 0, 0.35) 19.27%,
-        rgba(0, 0, 0, 0) 29.17%
-      ),
-      url(${movieImgUrl})
-    `;
-    
     movieDetailTitle.textContent = movie.title;
     movieDetailDescription.textContent = movie.overview;
     movieDetailScore.textContent = movie.vote_average;
-  
-    createCategories(movie.genres, movieDetailCategoriesList);
-  } */
+
+    createCategories(movie.genres, movieDetailcategoriesList);
+    getRelatedMoviesId(id);
+}
+
+async function getRelatedMoviesId(id) {
+    const { data } = await api(`movie/${id}/recommendations`);
+    const relatedMovies = data.results;
+
+    createMovie(relatedMovies, relatedMoviesContainer);
+}
