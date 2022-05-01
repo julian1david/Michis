@@ -1,5 +1,5 @@
 //Sections
-const headerSection = document.querySelector("#header");
+const headerSection = document.querySelector('#header');
 const tendrginPreviewSection = document.querySelector("#trendingPreview");
 const categoriesPreviewSection = document.querySelector("#categoriesPreview");
 const genericSection = document.querySelector("#genericList");
