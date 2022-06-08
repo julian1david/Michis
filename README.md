@@ -4,7 +4,7 @@ Example to practice with consume API of Movies
 
 ## Vista del proyecto 🚀
 
-Mira **[Movies-Page](https://julian1david.github.io/platzi-movies/)** para conocer como funciona el proyecto.
+Mira **[Movies-Page](https://julian1david-movies.netlify.app/)** para conocer como funciona el proyecto.
 
 
 ### Instalación 🔧
