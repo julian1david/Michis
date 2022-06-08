@@ -103,6 +103,11 @@ button {
 
 .movie-container {
   cursor: pointer;
+
+}
+.movie-container:hover {
+  transform: translateY(-20px);
+  transform: scale(1.2);
 }
 
 .movie-img {
@@ -188,8 +193,8 @@ button {
 }
 
 .trendingPreview-movieList {
-  overflow-x: scroll;
-  overflow-y: hidden;
+ /*  overflow-x: scroll;
+  overflow-y: hidden; */
   white-space: nowrap;
   height: 241px;
   padding-left: 24px;
