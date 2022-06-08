@@ -108,6 +108,7 @@ button {
 .movie-container:hover {
   transform: translateY(-20px);
   transform: scale(1.2);
+  transition: 1s transform ease;
 }
 
 .movie-img {
@@ -193,8 +194,8 @@ button {
 }
 
 .trendingPreview-movieList {
- /*  overflow-x: scroll;
-  overflow-y: hidden; */
+  overflow-x: scroll;
+  overflow-y: hidden;
   white-space: nowrap;
   height: 241px;
   padding-left: 24px;
@@ -207,7 +208,6 @@ button {
   height: 4px;
 }
 .trendingPreview-movieList::-webkit-scrollbar-thumb {
-  cursor: pointer;
   background-color: var(--purple-dark-1);
 }
 
@@ -333,7 +333,6 @@ button {
 }
 
 .relatedMovies-scrollContainer {
-  position: absolute;
   overflow-x: scroll;
   overflow-y: hidden;
   white-space: nowrap;

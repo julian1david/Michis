@@ -1,11 +1,9 @@
 {
   "name": "platzi-movies",
-  "version": "1.0.0",
+  "private": true,
+  "version": "0.0.0",
   "description": "A consume API of movies",
   "main": "index.html",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/julian1david/platzi-movies.git"
@@ -19,7 +17,17 @@
     "url": "https://github.com/julian1david/platzi-movies/issues"
   },
   "homepage": "https://github.com/julian1david/platzi-movies#readme",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "deploy": "gh-pages -d dist"
+  },
+  "devDependencies": {
+    "vite": "^2.9.9"
+  },
   "dependencies": {
-    "axios": "^0.27.2"
+    "axios": "^0.27.2",
+    "gh-pages": "^4.0.0"
   }
 }
