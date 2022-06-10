@@ -1,4 +1,5 @@
 function createMovie(movies, container) {
+    /*Clear html of page */
     container.innerHTML = "";
 
     movies.map(movie => {

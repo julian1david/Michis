@@ -16,6 +16,8 @@
   --lightBlue: #A2EEE5;
   --darkBlue: #8EA2EA;
   --red: #F09D9D;
+  --grey: #ccc;
+  --light-grey:  #eee;
 
   --font-family-titles: 'Dosis', sans-serif;
   --font-family-text: 'Red Hat Display', sans-serif;
@@ -102,9 +104,10 @@ button {
 }
 
 .movie-container {
+  border: none;
   cursor: pointer;
-
 }
+
 .movie-container:hover {
   transform: translateY(-20px);
   transform: scale(1.2);
@@ -112,7 +115,53 @@ button {
 }
 
 .movie-img {
+  border: none;
   border-radius: 8px;
+}
+
+.movie-container--loading{
+  background-color: var(--purple-light-2);
+  border-radius: 8px;
+  height: 225px;
+  min-height: 225px;
+  max-height: 225px;
+  width: 150px;
+  min-width: 150px;
+  max-width: 150px;
+  margin-bottom: 15px;
+  animation: loading-skeleton infinite 1.5s;
+}
+.movie-container--loading:nth-child(2){
+  animation-delay: .2s;
+}
+.movie-container--loading:nth-child(3){
+  animation-delay: .4s;
+}
+
+.category-container--loading{
+  background-color: var(--purple-light-2);
+  border-radius: 8px;
+  height: 25px;
+  min-height: 25px;
+  max-height: 25px;
+  width: 150px;
+  min-width: 150px;
+  max-width: 150px;
+  margin-bottom: 15px;
+  animation: loading-skeleton infinite 1.5s;
+}
+
+.category-container--loading:nth-child(2){
+  animation-delay: .2s;
+}
+
+@keyframes loading-skeleton {
+  0%, 100%{
+    opacity: 100%;
+  }
+  50%{
+    opacity: 0%;
+  }  
 }
 
 .categoriesPreview-list, .categories-list {

@@ -28,7 +28,7 @@ function trendsPage() {
 
     headerCategoryTitle.innerHTML = "Tendencias";
 
-    getTrending;
+    getTrending();
 }
 
 export default trendsPage;
