@@ -20,7 +20,7 @@ npm install
 Configure your secrets API 
 
 ```
- utils/secrets.example
+    .env
 ```
 
 ```

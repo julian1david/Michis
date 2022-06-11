@@ -6,6 +6,7 @@ import categoriesPage from '../templates/categoryPage'
 
 import {searchFormBtn , trendingBtn, arrowBtn, searchFormInput} from '../components/nodes';
 
+
 searchFormBtn.addEventListener('click', () => {
     location.hash = '#search=' + searchFormInput.value;
 });

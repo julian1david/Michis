@@ -1,5 +1,6 @@
 
-const IMG_URL = 'https://image.tmdb.org/t/p/w300/'
+const IMG_URL = 'https://image.tmdb.org/t/p/w300/';
+import registerImage from "../utils/lazy";
 
 function createMovie(movies, container) {
     /*Clear html of page */
@@ -17,8 +18,8 @@ function createMovie(movies, container) {
         const movieImg = document.createElement('img');
         movieImg.classList.add('movie-img');
         movieImg.setAttribute('alt', movie.title);
-        movieImg.setAttribute('src',`${IMG_URL}${movie.poster_path}`);
-
+        movieImg.dataset.src = `${IMG_URL}${movie.poster_path}`;
+        registerImage(movieImg);
         movieContainer.appendChild(movieImg);
         container.appendChild(movieContainer);
     });

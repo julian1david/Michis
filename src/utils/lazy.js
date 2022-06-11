@@ -1,20 +1,24 @@
-const allImages = document.querySelectorAll("img[data-src]");
 
-const loadImage = (entry) => {
-    const imgNode = entry.target;
-    //Configurar la url cuando cargue la imagen
-    const url = imgNode.dataset.src;
-    imgNode.src = url;
-    console.log("hola");
+const loadImage = (entries) => {
+    entries.forEach(entry => {
+        if(entry.isIntersecting){
+            const imgNode = entry.target;
+            const url = imgNode.dataset.src;
+            imgNode.src = url;
+        }
+    })
 }
 
-const options = {
+const observer = new IntersectionObserver(loadImage, {
     root: null,
     rootMargin: '0px',
-    threshold: 1.0
+    threshold: 0.2
+});
+
+
+const registerImage = (images) => {
+    observer.observe(images)
 }
 
-const observer  = new IntersectionObserver(loadImage, options)
 
-
-export default loadImage;
+export default registerImage; 
