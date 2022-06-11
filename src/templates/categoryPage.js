@@ -1,5 +1,5 @@
-
 import {getMoviesByCategory} from '../utils/getData';
+
 import {headerSection, 
     arrowBtn, 
     headerTitle,

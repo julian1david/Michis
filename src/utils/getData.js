@@ -1,9 +1,8 @@
-import axios from 'axios'
-
-import API_KEY from './secrets';
+import axios from 'axios';
 import createMovie from '../pages/createMovie';
 import createCategories from '../pages/createCategories';
 
+const API_KEY = import.meta.env.VITE_API_KEY;
 
 import {
     headerSection,
@@ -94,6 +93,7 @@ export async function getMovieById(id) {
 export async function getRelatedMoviesId(id) {
     const { data } = await api(`movie/${id}/recommendations`);
     const relatedMovies = data.results;
-
     createMovie(relatedMovies, relatedMoviesContainer);
+    //Reiniciar el scroll
+    relatedMoviesContainer.scrollTo(0, 0);
 }

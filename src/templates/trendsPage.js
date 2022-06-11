@@ -1,4 +1,5 @@
 import {getTrending } from '../utils/getData';
+
 import {headerSection, 
     arrowBtn, 
     headerTitle,
@@ -14,7 +15,7 @@ function trendsPage() {
     console.log('Welcome trends');
 
     headerSection.classList.remove('header-container--long');
-    headerSection.style.background = ' ';
+    headerSection.style.background = '';
     arrowBtn.classList.remove('inactive');
     arrowBtn.classList.remove('header-arrow--white');
     headerTitle.classList.add('inactive');

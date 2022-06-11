@@ -1,4 +1,5 @@
 import {getMovieById } from '../utils/getData';
+
 import {headerSection, 
     arrowBtn, 
     headerTitle,

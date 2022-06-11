@@ -1,4 +1,5 @@
 import {getTrendingPreview, getCategoriesPreview} from '../utils/getData';
+
 import {headerSection, 
         arrowBtn, 
         headerTitle,

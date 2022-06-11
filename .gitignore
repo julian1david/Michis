@@ -25,4 +25,5 @@ dist-ssr
 
 
 #API Secrets
-./src/utils/secrets.js
+src/utils/secrets.js
+.env

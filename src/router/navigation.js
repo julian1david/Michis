@@ -37,8 +37,6 @@ function navigatior() {
     document.documentElement.scrollTop = 0;
 }
 
-console.log(location.hash);
-
 
 export default navigatior;
 
