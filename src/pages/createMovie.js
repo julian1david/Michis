@@ -1,3 +1,7 @@
+import {lazy} from '../utils/lazy'
+
+const IMG_ULR = 'https://image.tmdb.org/t/p/w300/'
+
 function createMovie(movies, container) {
     /*Clear html of page */
     container.innerHTML = "";
@@ -14,8 +18,7 @@ function createMovie(movies, container) {
         const movieImg = document.createElement('img');
         movieImg.classList.add('movie-img');
         movieImg.setAttribute('alt', movie.title);
-        movieImg.setAttribute('src',
-            `https://image.tmdb.org/t/p/w300/${movie.poster_path}`);
+        movieImg.dataset.src= `https://image.tmdb.org/t/p/w300/${movie.poster_path}`;
 
         movieContainer.appendChild(movieImg);
         container.appendChild(movieContainer);
