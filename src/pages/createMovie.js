@@ -2,7 +2,17 @@
 const IMG_URL = 'https://image.tmdb.org/t/p/w300/';
 import registerImage from "../utils/lazy";
 
-function createMovie(movies, container) {
+const isImage = (path, container) => {
+    if (path !== null){
+        return `${IMG_URL}${path}`
+    }
+    else{
+        container.textContent = "hola"
+        container.style.backgroundColor = `${path}`;
+    }
+}
+
+function createMovie(movies, container,  lazyload = false) {
     /*Clear html of page */
     container.innerHTML = "";
 
@@ -18,8 +28,13 @@ function createMovie(movies, container) {
         const movieImg = document.createElement('img');
         movieImg.classList.add('movie-img');
         movieImg.setAttribute('alt', movie.title);
-        movieImg.dataset.src = `${IMG_URL}${movie.poster_path}`;
-        registerImage(movieImg);
+        movieImg.setAttribute(
+            lazyload ? 'data-src' : 'src',
+            isImage(movie.poster_path, movieImg)
+        )
+        if(lazyload){
+            registerImage(movieImg);
+        }
         movieContainer.appendChild(movieImg);
         container.appendChild(movieContainer);
     });

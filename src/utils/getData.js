@@ -30,22 +30,33 @@ const api = axios.create({
 //llamados a la API
 
 export async function getTrendingPreview() {
-    const { data } = await api.get('/trending/movie/day');
-    const movies = data.results;
-    createMovie(movies, trendinMoviesPreviewList);
+    try {
+        const { data } = await api.get('/trending/movie/day');
+        const movies = data.results;
+        createMovie(movies, trendinMoviesPreviewList, true);
+        trendinMoviesPreviewList.scrollTo(0, 0);
+    }
+    catch(error){
+        console.log(error);
+    }
 }
 
 export async function getTrending() {
     const { data } = await api.get('/trending/movie/day');
     const movies = data.results;
-    createMovie(movies, genericSection);
+    createMovie(movies, genericSection, true);
 }
 
 export async function getCategoriesPreview() {
-    const res = await fetch('https://api.themoviedb.org/3/genre/movie/list?api_key=' + API_KEY)
-    const data = await res.json()
-    const categories = data.genres;
-    createCategories(categories, categoriesPreviewList)
+    try{
+        const res = await fetch('https://api.themoviedb.org/3/genre/movie/list?api_key=' + API_KEY)
+        const data = await res.json()
+        const categories = data.genres;
+        createCategories(categories, categoriesPreviewList)
+    }
+    catch(error){
+        error;
+    }
 
 }
 
@@ -56,7 +67,7 @@ export async function getMoviesByCategory(id) {
         }
     });
     const movies = data.results;
-    createMovie(movies, genericSection);
+    createMovie(movies, genericSection,true);
 }
 
 export async function getMoviesBySearch(query) {
@@ -67,7 +78,7 @@ export async function getMoviesBySearch(query) {
         }
     });
     const movies = data.results;
-    createMovie(movies, genericSection);
+    createMovie(movies, genericSection, true);
 }
 
 export async function getMovieById(id) {
@@ -93,7 +104,7 @@ export async function getMovieById(id) {
 export async function getRelatedMoviesId(id) {
     const { data } = await api(`movie/${id}/recommendations`);
     const relatedMovies = data.results;
-    createMovie(relatedMovies, relatedMoviesContainer);
+    createMovie(relatedMovies, relatedMoviesContainer,true);
     //Reiniciar el scroll
     relatedMoviesContainer.scrollTo(0, 0);
 }

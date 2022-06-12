@@ -1,19 +1,24 @@
 
-const loadImage = (entries) => {
-    entries.forEach(entry => {
-        if(entry.isIntersecting){
-            const imgNode = entry.target;
-            const url = imgNode.dataset.src;
-            imgNode.src = url;
-        }
-    })
+const loadImage = (entry, observer) => {
+    const imgNode = entry.target;
+    const url = imgNode.getAttribute('data-src');
+    imgNode.setAttribute('src', url);
+    console.log(imgNode);
+    observer.unobserve(imgNode);
 }
 
-const observer = new IntersectionObserver(loadImage, {
+const options = {
     root: null,
-    rootMargin: '0px',
-    threshold: 0.2
-});
+    rootMargin: '0px 0px 0px 0px',
+    threshold: 0
+}
+
+const observer = new IntersectionObserver((entries) => {
+    entries.filter(entry => entry.isIntersecting)
+            .forEach(entry => {
+                loadImage(entry, observer);
+        })
+}, options);
 
 
 const registerImage = (images) => {
