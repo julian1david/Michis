@@ -2,7 +2,7 @@
 const IMG_URL = 'https://image.tmdb.org/t/p/w300/';
 import registerImage from "../utils/lazy";
 
-function createMovie(movies, container,  lazyload = false) {
+function createMovie(movies, container, lazyload = false) {
     /*Clear html of page */
     container.innerHTML = "";
 
@@ -20,9 +20,9 @@ function createMovie(movies, container,  lazyload = false) {
         movieImg.setAttribute('alt', movie.title);
         movieImg.setAttribute(
             lazyload ? 'data-src' : 'src',
-            isImage(movie, movieImg)
+            isImage(movie,movieImg)
         )
-        if(lazyload){
+        if (lazyload) {
             registerImage(movieImg);
         }
         movieContainer.appendChild(movieImg);
@@ -30,12 +30,12 @@ function createMovie(movies, container,  lazyload = false) {
     });
 }
 
-const isImage = (movie, container) => {
-    if (movie.poster_path !== null){
+const isImage = (movie,container) => {
+    if (movie.poster_path !== null) {
         return `${IMG_URL}${movie.poster_path}`
     }
-    else{
-        console.log(movie.genre_ids[0]);
+    else {
+        return './src/assets/img/notfound.jpg'
     }
 }
 
