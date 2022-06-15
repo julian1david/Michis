@@ -3,7 +3,6 @@ const loadImage = (entry, observer) => {
     const imgNode = entry.target;
     const url = imgNode.getAttribute('data-src');
     imgNode.setAttribute('src', url);
-    console.log(imgNode);
     observer.unobserve(imgNode);
 }
 
