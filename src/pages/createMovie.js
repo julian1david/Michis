@@ -1,5 +1,8 @@
+import notFound from '../assets/img/not-found.png';
 
 const IMG_URL = 'https://image.tmdb.org/t/p/w300/';
+
+
 import registerImage from "../utils/lazy";
 
 function createMovie(movies, container, lazyload = false) {
@@ -35,7 +38,7 @@ const isImage = (movie,container) => {
         return `${IMG_URL}${movie.poster_path}`
     }
     else {
-        return './src/assets/img/notfound.jpg'
+        return notFound
     }
 }
 
