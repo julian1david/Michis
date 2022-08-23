@@ -1,5 +1,5 @@
-import navigatior from './router/navigation'
+import navigator from './router/navigation'
 
-navigatior();
-window.addEventListener('hashchange', navigatior, false)
+window.addEventListener('hashchange', navigator, false);
+window.addEventListener('DOMContentLoaded', navigator, false);;
 

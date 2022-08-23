@@ -12,7 +12,6 @@ import {headerSection,
 } from '../components/nodes'
 
 function searchPage() {
-    console.log('Welcome search');    
 
     headerSection.classList.remove('header-container--long');
     headerSection.style.background = '';
@@ -30,6 +29,7 @@ function searchPage() {
 
      // => ['#search', 'busqueda']
     const [_, query]  = location.hash.split('='); 
+    
     getMoviesBySearch(query)
 
 }

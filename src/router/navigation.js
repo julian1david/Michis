@@ -8,7 +8,8 @@ import {searchFormBtn , trendingBtn, arrowBtn, searchFormInput} from '../compone
 
 
 searchFormBtn.addEventListener('click', () => {
-    location.hash = '#search=' + searchFormInput.value;
+    /* Metodo trim lo usamos para truncar los espacios en blanco al principio y al final */ 
+    location.hash = `#search=${searchFormInput.value.split(" ").join('')}`;
 });
 
 trendingBtn.addEventListener('click', () => {
@@ -20,7 +21,7 @@ arrowBtn.addEventListener('click', () => {
     /* location.hash = "#home"; */
 })
 
-function navigatior() {
+function navigator() {
 
     if (location.hash.startsWith('#trends')) {
         trendsPage();
@@ -39,7 +40,7 @@ function navigatior() {
 }
 
 
-export default navigatior;
+export default navigator;
 
 
 
