@@ -33,7 +33,7 @@ export async function getTrendingPreview() {
     try {
         const { data } = await api.get('/trending/movie/day');
         const movies = data.results;
-        createMovie(movies, trendinMoviesPreviewList, true);
+        createMovie(movies, trendinMoviesPreviewList, { lazyLoad: true , clean: true});
         trendinMoviesPreviewList.scrollTo(0, 0);
     }
     catch(error){
@@ -41,11 +41,34 @@ export async function getTrendingPreview() {
     }
 }
 
-export async function getTrending() {
-    const { data } = await api.get('/trending/movie/day');
-    const movies = data.results;
-    createMovie(movies, genericSection, true);
+export async function getTrending(page = 1){
+    try{
+        const { data } = await api('/trending/movie/day', {
+            params: {
+                page,
+            }
+        });
+    
+        const movies = data.results;
+    
+        createMovie(movies, genericSection, {
+            lazyLoad: true,
+            clean: page == 1,
+        });
+        /* page == 1 true ? : false */
+    
+        const btnLoadMore = document.createElement('button');
+        btnLoadMore.innerText = "Load more";
+        btnLoadMore.addEventListener('click', () => {
+            genericSection.removeChild(btnLoadMore)
+            getTrending(page + 1);
+        });
+        genericSection.appendChild(btnLoadMore); 
+    }catch{
+        console.log(e)
+    }
 }
+
 
 export async function getCategoriesPreview() {
     try{
@@ -67,7 +90,7 @@ export async function getMoviesByCategory(id) {
         }
     });
     const movies = data.results;
-    createMovie(movies, genericSection,true);
+    createMovie(movies, genericSection,{ lazyLoad: true , clean: true});
 }
 
 export async function getMoviesBySearch(query) {
@@ -78,7 +101,7 @@ export async function getMoviesBySearch(query) {
         }
     });
     const movies = data.results;
-    createMovie(movies, genericSection, true);
+    createMovie(movies, genericSection, { lazyLoad: true , clean: true});
 }
 
 export async function getMovieById(id) {
@@ -104,7 +127,7 @@ export async function getMovieById(id) {
 export async function getRelatedMoviesId(id) {
     const { data } = await api(`movie/${id}/recommendations`);
     const relatedMovies = data.results;
-    createMovie(relatedMovies, relatedMoviesContainer,true);
+    createMovie(relatedMovies, relatedMoviesContainer,{ lazyLoad: true , clean: true});
     //Reiniciar el scroll
     relatedMoviesContainer.scrollTo(0, 0);
 }
