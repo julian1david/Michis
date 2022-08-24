@@ -7,7 +7,7 @@ const API_KEY = import.meta.env.VITE_API_KEY;
 import {
     headerSection,
     movieDetailTitle,
-    movieDetailScore, 
+    movieDetailScore,
     movieDetailDescription,
     movieDetailcategoriesList,
     genericSection,
@@ -33,51 +33,62 @@ export async function getTrendingPreview() {
     try {
         const { data } = await api.get('/trending/movie/day');
         const movies = data.results;
-        createMovie(movies, trendinMoviesPreviewList, { lazyLoad: true , clean: true});
+        createMovie(movies, trendinMoviesPreviewList, { lazyLoad: true, clean: true });
         trendinMoviesPreviewList.scrollTo(0, 0);
     }
-    catch(error){
+    catch (error) {
         console.log(error);
     }
 }
 
-export async function getTrending(page = 1){
-    try{
-        const { data } = await api('/trending/movie/day', {
-            params: {
-                page,
-            }
-        });
+export async function getTrending(page = 1) {
+
+    try {
+        const {
+            scrollTop,
+            clientHeight,
+            scrollHeight } = document.documentElement;
+
+        const isScrollBotton = (scrollTop + clientHeight) >= scrollHeight - 15;
+
+        if(isScrollBotton){ 
+            page++
+            const { data } = await api('/trending/movie/day', {
+                params: {
+                    page,
+                }
+            });
     
-        const movies = data.results;
+            const movies = data.results;
     
-        createMovie(movies, genericSection, {
-            lazyLoad: true,
-            clean: page == 1,
-        });
+            createMovie(movies, genericSection, {
+                lazyLoad: true,
+                clean: page == 1,
+            });
+        }
         /* page == 1 true ? : false */
-    
-        const btnLoadMore = document.createElement('button');
-        btnLoadMore.innerText = "Load more";
-        btnLoadMore.addEventListener('click', () => {
-            genericSection.removeChild(btnLoadMore)
-            getTrending(page + 1);
-        });
-        genericSection.appendChild(btnLoadMore); 
-    }catch{
+
+        // const btnLoadMore = document.createElement('button');
+        // btnLoadMore.innerText = "Load more";
+        // btnLoadMore.addEventListener('click', () => {
+        //     genericSection.removeChild(btnLoadMore)
+        //     getTrending(page + 1);
+        // });
+        // genericSection.appendChild(btnLoadMore); 
+    } catch {
         console.log(e)
     }
 }
 
 
 export async function getCategoriesPreview() {
-    try{
+    try {
         const res = await fetch('https://api.themoviedb.org/3/genre/movie/list?api_key=' + API_KEY)
         const data = await res.json()
         const categories = data.genres;
         createCategories(categories, categoriesPreviewList)
     }
-    catch(error){
+    catch (error) {
         error;
     }
 
@@ -90,7 +101,7 @@ export async function getMoviesByCategory(id) {
         }
     });
     const movies = data.results;
-    createMovie(movies, genericSection,{ lazyLoad: true , clean: true});
+    createMovie(movies, genericSection, { lazyLoad: true, clean: true });
 }
 
 export async function getMoviesBySearch(query) {
@@ -101,7 +112,7 @@ export async function getMoviesBySearch(query) {
         }
     });
     const movies = data.results;
-    createMovie(movies, genericSection, { lazyLoad: true , clean: true});
+    createMovie(movies, genericSection, { lazyLoad: true, clean: true });
 }
 
 export async function getMovieById(id) {
@@ -127,7 +138,7 @@ export async function getMovieById(id) {
 export async function getRelatedMoviesId(id) {
     const { data } = await api(`movie/${id}/recommendations`);
     const relatedMovies = data.results;
-    createMovie(relatedMovies, relatedMoviesContainer,{ lazyLoad: true , clean: true});
+    createMovie(relatedMovies, relatedMoviesContainer, { lazyLoad: true, clean: true });
     //Reiniciar el scroll
     relatedMoviesContainer.scrollTo(0, 0);
 }
