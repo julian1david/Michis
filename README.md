@@ -1,5 +1,5 @@
 # Platzi Movies
-Example to practice with consume API of Movies
+Example to practice with consume API of Movies of platzi course
 
 
 ## Vista del proyecto 🚀
